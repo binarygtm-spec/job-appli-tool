@@ -1,96 +1,158 @@
 {
   "region": "d7b62b",
   "project": "87c83726-444b-5ecb-bb93-f48503484fa5",
+  "verified_at": "2026-11-21",
   "tools": [
     {
       "id": "1a3e6536-db49-449f-9f75-517504239b3c",
-      "alias": null,
-      "title": null,
-      "description": null,
-      "params": null,
+      "alias": "eassa-gmail",
+      "title": "Eassa Gmail Send Email",
+      "kind": "gmail",
+      "owner": "eassahashimev@gmail.com",
+      "description": "Sends from eassahashim88@gmail.com (Gmail send_email_gmail)",
+      "params": {
+        "email": "string (required) - recipient",
+        "subjectline": "string (required)",
+        "email_body": "string (required)"
+      },
+      "oauth_account_id": "c52d5bd2-432f-4045-af92-065b855ca0ca",
       "build_url": "https://app.relevanceai.com/notebook/d7b62b/87c83726-444b-5ecb-bb93-f48503484fa5/1a3e6536-db49-449f-9f75-517504239b3c/build"
     },
     {
       "id": "5f3c0f8a-9af9-4cc1-898b-7b230346962c",
-      "alias": null,
-      "title": null,
-      "description": null,
-      "params": null,
+      "alias": "eassa-linkedin-invite",
+      "title": "Eassa Linkedin Send Invite",
+      "kind": "linkedin_invite",
+      "owner": "eassahashimev@gmail.com",
+      "description": "LinkedIn Send Invitation from Eassa Hashim account (tool description in Relevance still says Lazim - copied text)",
+      "params": {
+        "linkedin_url": "string (required) - prospect profile URL"
+      },
+      "oauth_account_id": "f2339534-3026-499e-821f-b606f7013a3a",
       "build_url": "https://app.relevanceai.com/notebook/d7b62b/87c83726-444b-5ecb-bb93-f48503484fa5/5f3c0f8a-9af9-4cc1-898b-7b230346962c/build"
     },
     {
       "id": "8f08cea6-4eb3-4586-acd5-e57d0db5554e",
-      "alias": null,
-      "title": null,
-      "description": null,
-      "params": null,
+      "alias": "munaza-gmail",
+      "title": "Munaza Gmail Send Email - copy",
+      "kind": "gmail",
+      "owner": "syed.munaza@gmail.com",
+      "description": "Gmail send from Munaza connected account",
+      "params": {
+        "email": "string (required) - recipient",
+        "subjectline": "string (required)",
+        "email_body": "string (required)"
+      },
+      "oauth_account_id": "b7234138-993d-49af-8738-b6ef176ed109",
       "build_url": "https://app.relevanceai.com/notebook/d7b62b/87c83726-444b-5ecb-bb93-f48503484fa5/8f08cea6-4eb3-4586-acd5-e57d0db5554e/build"
     },
     {
-      "id": "85b44884-7019-48fe-a2ff-cbe3f8f0970d",
-      "alias": null,
-      "title": null,
-      "description": null,
-      "params": null,
-      "build_url": "https://app.relevanceai.com/notebook/d7b62b/87c83726-444b-5ecb-bb93-f48503484fa5/85b44884-7019-48fe-a2ff-cbe3f8f0970d/build"
-    },
-    {
-      "id": "c0805467-59e2-4848-8fcc-f7996dd969a7",
-      "alias": null,
-      "title": null,
-      "description": null,
-      "params": null,
-      "build_url": "https://app.relevanceai.com/notebook/d7b62b/87c83726-444b-5ecb-bb93-f48503484fa5/c0805467-59e2-4848-8fcc-f7996dd969a7/build"
-    },
-    {
       "id": "d1137b03-d66f-4404-b008-560c34108a81",
-      "alias": null,
-      "title": null,
-      "description": null,
-      "params": null,
+      "alias": "munaza-linkedin-invite",
+      "title": "Munaza Linkedin Send Invite",
+      "kind": "linkedin_invite",
+      "owner": "syed.munaza@gmail.com",
+      "description": "LinkedIn Send Invitation from Munaza account",
+      "params": {
+        "linkedin_url": "string (required) - prospect profile URL"
+      },
+      "oauth_account_id": "f6264b38-c5f7-4d24-a2bc-d5a09a370008",
       "build_url": "https://app.relevanceai.com/notebook/d7b62b/87c83726-444b-5ecb-bb93-f48503484fa5/d1137b03-d66f-4404-b008-560c34108a81/build"
     },
     {
+      "id": "23a01c2b-21fa-4396-bf13-93ee49f6ede3",
+      "alias": "munaza-whatsapp",
+      "title": "Munaza Whatsapp New Chat",
+      "kind": "whatsapp",
+      "owner": "syed.munaza@gmail.com",
+      "description": "WhatsApp Start New Chat from Munaza account",
+      "params": {
+        "mobile_no": "string (required) - with country code",
+        "message": "string (required)"
+      },
+      "oauth_account_id": "506bd2f7-1455-4cf2-aebd-2b0a3991d25e",
+      "build_url": "https://app.relevanceai.com/notebook/d7b62b/87c83726-444b-5ecb-bb93-f48503484fa5/23a01c2b-21fa-4396-bf13-93ee49f6ede3/build"
+    },
+    {
       "id": "08d256cb-2b21-469c-9daf-09f9e0cf3873",
-      "alias": null,
-      "title": null,
-      "description": null,
-      "params": null,
+      "alias": "lazim-gmail",
+      "title": "Lazim Gmail Send Email",
+      "kind": "gmail",
+      "owner": "lazimabedali@gmail.com",
+      "description": "Gmail send from Lazim connected account",
+      "params": {
+        "email": "string (required) - recipient",
+        "subjectline": "string (required)",
+        "email_body": "string (required)"
+      },
+      "oauth_account_id": "44d04980-0b2b-4213-84df-30e13cca7619",
       "build_url": "https://app.relevanceai.com/notebook/d7b62b/87c83726-444b-5ecb-bb93-f48503484fa5/08d256cb-2b21-469c-9daf-09f9e0cf3873/build"
     },
     {
       "id": "6a7c9f6c-e321-4449-915e-a5eca4363f24",
-      "alias": null,
-      "title": null,
-      "description": null,
-      "params": null,
+      "alias": "lazim-linkedin-invite",
+      "title": "Lazim Linkedin Send Invite",
+      "kind": "linkedin_invite",
+      "owner": "lazimabedali@gmail.com",
+      "description": "LinkedIn Send Invitation from Lazim account",
+      "params": {
+        "linkedin_url": "string (required) - prospect profile URL"
+      },
+      "oauth_account_id": "067c8393-5e93-4206-83b6-6850dcc57846",
       "build_url": "https://app.relevanceai.com/notebook/d7b62b/87c83726-444b-5ecb-bb93-f48503484fa5/6a7c9f6c-e321-4449-915e-a5eca4363f24/build"
+    },
+    {
+      "id": "7325f61f-66bf-4bc3-a7ec-f4b8d9e118de",
+      "alias": "lazim-whatsapp",
+      "title": "Lazim Whatsapp New Chat",
+      "kind": "whatsapp",
+      "owner": "lazimabedali@gmail.com",
+      "description": "WhatsApp Start New Chat from Lazim account",
+      "params": {
+        "mobile_no": "string (required) - with country code",
+        "message": "string (required)"
+      },
+      "oauth_account_id": "dde70e63-21c2-4854-b1a5-6fb36d38f770",
+      "build_url": "https://app.relevanceai.com/notebook/d7b62b/87c83726-444b-5ecb-bb93-f48503484fa5/7325f61f-66bf-4bc3-a7ec-f4b8d9e118de/build"
     },
     {
       "id": "2749eab9-a468-4a82-8027-e294f26e6de8",
       "alias": "linkedin-profile",
-      "title": "Get LinkedIn Profile Data",
-      "description": "Scrape a LinkedIn person profile (about, experiences, educations, location, company). Used by airtable-automations/user_profile_scrape.js.",
+      "title": "Get Linkedin Profile Data",
+      "kind": "scrape",
+      "owner": null,
+      "description": "Scrape a LinkedIn person profile",
       "params": {
-        "linkedin_url": "string (required)"
+        "linkedin_url": "string (required) - prospect profile URL"
       },
+      "oauth_account_id": null,
       "build_url": "https://app.relevanceai.com/notebook/d7b62b/87c83726-444b-5ecb-bb93-f48503484fa5/2749eab9-a468-4a82-8027-e294f26e6de8/build"
     },
     {
-      "id": "23a01c2b-21fa-4396-bf13-93ee49f6ede3",
-      "alias": null,
-      "title": null,
-      "description": null,
-      "params": null,
-      "build_url": "https://app.relevanceai.com/notebook/d7b62b/87c83726-444b-5ecb-bb93-f48503484fa5/23a01c2b-21fa-4396-bf13-93ee49f6ede3/build"
+      "id": "85b44884-7019-48fe-a2ff-cbe3f8f0970d",
+      "alias": "linkedin-company",
+      "title": "Get Linkedin Company Profile",
+      "kind": "scrape",
+      "owner": null,
+      "description": "Scrape a LinkedIn company page",
+      "params": {
+        "linkedin_url": "string (required) - prospect profile URL"
+      },
+      "oauth_account_id": null,
+      "build_url": "https://app.relevanceai.com/notebook/d7b62b/87c83726-444b-5ecb-bb93-f48503484fa5/85b44884-7019-48fe-a2ff-cbe3f8f0970d/build"
     },
     {
-      "id": "7325f61f-66bf-4bc3-a7ec-f4b8d9e118de",
-      "alias": null,
-      "title": null,
-      "description": null,
-      "params": null,
-      "build_url": "https://app.relevanceai.com/notebook/d7b62b/87c83726-444b-5ecb-bb93-f48503484fa5/7325f61f-66bf-4bc3-a7ec-f4b8d9e118de/build"
+      "id": "c0805467-59e2-4848-8fcc-f7996dd969a7",
+      "alias": "linkedin-posts",
+      "title": "Get Linkedin Profile Post",
+      "kind": "scrape",
+      "owner": null,
+      "description": "Scrape a LinkedIn profile latest posts",
+      "params": {
+        "linkedin_url": "string (required) - prospect profile URL"
+      },
+      "oauth_account_id": null,
+      "build_url": "https://app.relevanceai.com/notebook/d7b62b/87c83726-444b-5ecb-bb93-f48503484fa5/c0805467-59e2-4848-8fcc-f7996dd969a7/build"
     }
   ]
 }
