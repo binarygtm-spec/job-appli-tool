@@ -1,0 +1,9 @@
+{
+  "name": "linkedin-jobs-scraper",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "LinkedIn job search → Airtable Companies (Playwright, your own Chrome profile)",
+  "scripts": { "start": "bash run.sh" },
+  "dependencies": { "playwright-core": "^1.65.1" }
+}
