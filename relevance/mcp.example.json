@@ -1,0 +1,17 @@
+{
+  "mcpServers": {
+    "relevanceai-mcp-server": {
+      "command": "npx",
+      "args": [
+        "@relevanceai/relevanceai-mcp-server@latest",
+        "--region",
+        "d7b62b",
+        "--tools",
+        "1a3e6536-db49-449f-9f75-517504239b3c,5f3c0f8a-9af9-4cc1-898b-7b230346962c,8f08cea6-4eb3-4586-acd5-e57d0db5554e,85b44884-7019-48fe-a2ff-cbe3f8f0970d,c0805467-59e2-4848-8fcc-f7996dd969a7,d1137b03-d66f-4404-b008-560c34108a81,08d256cb-2b21-469c-9daf-09f9e0cf3873,6a7c9f6c-e321-4449-915e-a5eca4363f24,2749eab9-a468-4a82-8027-e294f26e6de8,23a01c2b-21fa-4396-bf13-93ee49f6ede3,7325f61f-66bf-4bc3-a7ec-f4b8d9e118de"
+      ],
+      "env": {
+        "RELEVANCE_AUTH_TOKEN": "<project_id>:<api_key>  ← paste locally, never commit"
+      }
+    }
+  }
+}

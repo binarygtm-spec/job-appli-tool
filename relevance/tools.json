@@ -1,0 +1,96 @@
+{
+  "region": "d7b62b",
+  "project": "87c83726-444b-5ecb-bb93-f48503484fa5",
+  "tools": [
+    {
+      "id": "1a3e6536-db49-449f-9f75-517504239b3c",
+      "alias": null,
+      "title": null,
+      "description": null,
+      "params": null,
+      "build_url": "https://app.relevanceai.com/notebook/d7b62b/87c83726-444b-5ecb-bb93-f48503484fa5/1a3e6536-db49-449f-9f75-517504239b3c/build"
+    },
+    {
+      "id": "5f3c0f8a-9af9-4cc1-898b-7b230346962c",
+      "alias": null,
+      "title": null,
+      "description": null,
+      "params": null,
+      "build_url": "https://app.relevanceai.com/notebook/d7b62b/87c83726-444b-5ecb-bb93-f48503484fa5/5f3c0f8a-9af9-4cc1-898b-7b230346962c/build"
+    },
+    {
+      "id": "8f08cea6-4eb3-4586-acd5-e57d0db5554e",
+      "alias": null,
+      "title": null,
+      "description": null,
+      "params": null,
+      "build_url": "https://app.relevanceai.com/notebook/d7b62b/87c83726-444b-5ecb-bb93-f48503484fa5/8f08cea6-4eb3-4586-acd5-e57d0db5554e/build"
+    },
+    {
+      "id": "85b44884-7019-48fe-a2ff-cbe3f8f0970d",
+      "alias": null,
+      "title": null,
+      "description": null,
+      "params": null,
+      "build_url": "https://app.relevanceai.com/notebook/d7b62b/87c83726-444b-5ecb-bb93-f48503484fa5/85b44884-7019-48fe-a2ff-cbe3f8f0970d/build"
+    },
+    {
+      "id": "c0805467-59e2-4848-8fcc-f7996dd969a7",
+      "alias": null,
+      "title": null,
+      "description": null,
+      "params": null,
+      "build_url": "https://app.relevanceai.com/notebook/d7b62b/87c83726-444b-5ecb-bb93-f48503484fa5/c0805467-59e2-4848-8fcc-f7996dd969a7/build"
+    },
+    {
+      "id": "d1137b03-d66f-4404-b008-560c34108a81",
+      "alias": null,
+      "title": null,
+      "description": null,
+      "params": null,
+      "build_url": "https://app.relevanceai.com/notebook/d7b62b/87c83726-444b-5ecb-bb93-f48503484fa5/d1137b03-d66f-4404-b008-560c34108a81/build"
+    },
+    {
+      "id": "08d256cb-2b21-469c-9daf-09f9e0cf3873",
+      "alias": null,
+      "title": null,
+      "description": null,
+      "params": null,
+      "build_url": "https://app.relevanceai.com/notebook/d7b62b/87c83726-444b-5ecb-bb93-f48503484fa5/08d256cb-2b21-469c-9daf-09f9e0cf3873/build"
+    },
+    {
+      "id": "6a7c9f6c-e321-4449-915e-a5eca4363f24",
+      "alias": null,
+      "title": null,
+      "description": null,
+      "params": null,
+      "build_url": "https://app.relevanceai.com/notebook/d7b62b/87c83726-444b-5ecb-bb93-f48503484fa5/6a7c9f6c-e321-4449-915e-a5eca4363f24/build"
+    },
+    {
+      "id": "2749eab9-a468-4a82-8027-e294f26e6de8",
+      "alias": "linkedin-profile",
+      "title": "Get LinkedIn Profile Data",
+      "description": "Scrape a LinkedIn person profile (about, experiences, educations, location, company). Used by airtable-automations/user_profile_scrape.js.",
+      "params": {
+        "linkedin_url": "string (required)"
+      },
+      "build_url": "https://app.relevanceai.com/notebook/d7b62b/87c83726-444b-5ecb-bb93-f48503484fa5/2749eab9-a468-4a82-8027-e294f26e6de8/build"
+    },
+    {
+      "id": "23a01c2b-21fa-4396-bf13-93ee49f6ede3",
+      "alias": null,
+      "title": null,
+      "description": null,
+      "params": null,
+      "build_url": "https://app.relevanceai.com/notebook/d7b62b/87c83726-444b-5ecb-bb93-f48503484fa5/23a01c2b-21fa-4396-bf13-93ee49f6ede3/build"
+    },
+    {
+      "id": "7325f61f-66bf-4bc3-a7ec-f4b8d9e118de",
+      "alias": null,
+      "title": null,
+      "description": null,
+      "params": null,
+      "build_url": "https://app.relevanceai.com/notebook/d7b62b/87c83726-444b-5ecb-bb93-f48503484fa5/7325f61f-66bf-4bc3-a7ec-f4b8d9e118de/build"
+    }
+  ]
+}
