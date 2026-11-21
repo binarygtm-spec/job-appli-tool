@@ -19,14 +19,14 @@ Load the tools with ToolSearch (`+Airtable`, `+Clay`, `relevanceai`).
 ## Airtable map
 IGNORE these tables: Research Projects, Research Methods, Findings, Competitors.
 
-**User Test** `tblOnYAjvsaDn9oOp`: the applicants (job seekers). Look up the applicant by `Email` = the job's `User Email ID`. You need: Full Name, Profile Summary, Skills, Current/Previous Job 1–6 (title, company, dates, responsibilities), degrees, and Relevance Profile Output (raw JSON).
+**User Test** `tblOnYAjvsaDn9oOp`: the applicants (job seekers). Look up the applicant by `Email` = the job's `User Email ID`. You need: Full Name, Profile Summary, Mobile Number, Linkedin URL, Resume URL `fldCv94321Wqtdlrp`, Signature Email `fldfzSfZuVt5dzNES`, Email Signature `fldGIkL5KmycLgK1o` (formula; the applicant's own sign-off), Skills, Current/Previous Job 1–6 (title, company, dates, responsibilities), degrees, and Relevance Profile Output (raw JSON).
 
 **Companies** `tbla2BuSNY0G0GEBM` (one row per job posting)
 - Company Name `fldw1fEDxBKcVUKhI`, User Email ID `fldJBQSCks7jYPHs2`, Job URL `fldmjgULOJxsD3PAr`, Job Title `fldYLY5p0WJrtFhbr`, Job Location `fldrCPw2AXh39x2n1`, Job Type `fldSp1z7yhNPNZHVv`, Job Posted `fldgLwUY37OdayeIX`
 - Job Description `fldEPf6Uz1gHfJbRZ`, Job Requirements `fldPI6BmhlzESCTpX`
 - Company LinkedIn URL `fldIjVO20wHrZdRWA`, Company Website `fldw0xFlF7lIyluaI`, Industry `fld4vQITiuIhi99os`, Company Size `fldVr5d5GI95ummiJ`, Company HQ `fldek0dKbvC2TsrKA`
 - Company About `fld2GaT3Y42iwKQTQ`, Products & Services `fldwoRwxKjP36Vm2k`, Recent Posts `fldBQJv4B666BVwz5`, Recent Product Launches `fldCItRx6ywlt2H1G`, Recent Funding `fldWAe0wemSwYX40y`, Achievements & Milestones `fld1oYD0O05th0zJP`, Hiring Signals `fldwP20TECa3ez4Oi`
-- Company Summary `fldS8jQPBuKFvIC6g`, Prospect Status `fldrKV3TZxYObzSBU` ("Prospects found" / "None found" / "Error")
+- Company Summary `fldS8jQPBuKFvIC6g`, Company Post Summary `fldbtXqOW6nb6Nfge`, Prospect Status `fldrKV3TZxYObzSBU` ("Prospects found" / "None found" / "Error")
 - Prospects (link) `fldYTFQ44scGBAGVF`
 
 **Prospects** `tblzySJTB4rc1IRC8`
@@ -34,8 +34,9 @@ IGNORE these tables: Research Projects, Research Methods, Findings, Competitors.
 - Prospect Job Title `fldGhgibdQmAnYdV7`, Prospect LinkedIn URL `fldP8FiV3P3jvunm6`, Prospect Location `fld7Ff130qhZ3Q1kJ`
 - Prospect Email `fldSWjjyy8GjiJqrd` (verified only), Suggested Email (unverified) `fldjO7pRPh7HCEKSD`, Prospect Mobile Number `fldPb11j2JclGGrfX`
 - Priority `fldai78FI0YiV5XFp` ("Primary" / "Secondary"), Role Type `fldlAy2pibs6dWvmZ` ("Hiring Manager" / "Founder / CEO" / "HR / CHRO" / "Leadership"), Contact Status `fldkeBhbgtg1bTnEs` ("Enriched" / "No contact found" / "Pending - Clay credits")
-- Prospect Summary `fldrl3o9BM7VtRqsG`, Post Summary `fldaEyZxqyW5oIbEJ`, Latest Posts `fldBjGdEV2Vv1E9Zc`, Company Summary `fldaZzourVdi8uYDL`, Job Match Summary `fldVs5GB29f2NnrD4`
+- Prospect Summary `fldrl3o9BM7VtRqsG`, Post Summary `fldaEyZxqyW5oIbEJ`, Latest Posts `fldBjGdEV2Vv1E9Zc`, Company Summary `fldaZzourVdi8uYDL`, Company Post Summary `fldCVJ6Hy0Ou00ifB`, Job Match Summary `fldVs5GB29f2NnrD4`
 - Email Subject Line `fld2tPLi7lsIDtN9r`, Email Body `fldUTHxXWz1xtrVAJ`, Resume PDF URL `fldFfsXPhxkhi8Kd7`, Resume Word URL `fldqUo9StBb7c2dFa`
+- Email Sent At `fldymJe7CuWQGaUjX`, LinkedIn Invite Sent At `fldlBHZHl5tVD8bGE`, Outreach Log `fldkJrYeKA1e4orEJ`
 
 **One set of prospects per applicant.** If two applicants target the same company, each gets their own prospect rows (dedupe key = LinkedIn URL + User Email ID).
 
@@ -67,6 +68,13 @@ Pick 5 distinct people. **Primary** (gets a mobile) = hiring manager + Founder/C
 Build it from Company About, Products & Services, Recent Posts, Achievements, Funding, Hiring Signals, size, HQ and industry. Use these labelled paragraphs:
 **Overview**, **What they do**, **Products & services**, **Achievements**, **Right now** (events, launches, news, with dates), **Hiring signal** (why they're hiring this role).
 
+**Company Post Summary** (write it to Companies → Company Post Summary and copy it to each prospect's Company Post Summary). Build it from Recent Posts only:
+- how often the company posts;
+- the latest 3–5 posts as `[date] what it was about`, covering launches, events, customer wins, hiring and culture;
+- recurring themes;
+- a `USE IT:` line giving one specific hook for the email.
+If there are no posts, say so.
+
 ## Step 5: Job Match Summary (job × applicant)
 Read the job (Title, Description, Requirements, Location, Type, Posted) and the applicant's User Test record.
 - Header lines: JOB, APPLICANT (name + User Email ID), and FIT, an estimate out of 10, labelled as an estimate.
@@ -76,11 +84,43 @@ Read the job (Title, Description, Requirements, Location, Type, Posted) and the 
 - Last line, personalised per prospect: `PITCH TO <NAME> (<role>): …`, combining their Post Summary hook with their role.
 
 ## Step 6: Draft the application email (one per prospect)
+**Gate. Don't write a word until all 6 inputs exist and you've read them.** Run `node relevance/email_context.mjs --record <prospect recId>` (exit 2 = something is missing), or read the same fields through Airtable MCP:
+1. Prospect Summary
+2. Prospect Post Summary (Prospects → Post Summary)
+3. Company Summary
+4. Company Post Summary
+5. Job Description (plus Job Requirements) from the linked Companies row
+6. Applicant Profile Summary (User Test row whose Email = the prospect's User Email ID)
+
+If any is missing, go back and research it (Steps 3–5). Don't compose around a gap.
+
+Each input has a job in the email:
+- the prospect's role comes from (1);
+- the prospect hook comes from (2);
+- the company specifics come from (3) and (4);
+- the proof points come from (6), mapped to (5).
+
+Use the facts in these inputs only; no invented metrics.
+
+**Format:** follow `templates/application_email.md`, which is based on the approved Razorpay sample.
 - **Subject:** specific to the job and the person, under 70 characters.
-- **Body:** 120–180 words, written as the applicant. Open with one personal hook from the Post or Company Summary. Then 3–4 proof bullets mapped to the job's requirements (facts from the applicant's profile only, no invented metrics), one offer (e.g. a 10-minute walkthrough), one clear ask, and a sign-off with the applicant's name and LinkedIn.
-- Adjust the angle by role: hiring manager = builder-to-builder; CEO = business outcome; CTO = technical depth; HR/ops = short and practical (role link, location, availability, ask for next steps); other leaders = their function's angle.
-- If the body says a resume is attached, make sure Resume PDF URL / Resume Word URL are filled; if not, tell the user.
-- Write the subject and body to Prospects. Do not send.
+- **Body:** about 150–200 words:
+  1. greeting by first name;
+  2. why you're writing to this person (their role);
+  3. what you noticed about the company;
+  4. proof from the applicant's experience;
+  5. a "point me to the right colleague" line;
+  6. a 20-minute ask followed by `{{RESUME_LINK}}`.
+- Adjust the angle by role: hiring manager = builder-to-builder; CEO = business outcome; CTO = technical depth; HR/TA = short and practical (role, location, availability, next steps); other leaders = their function's angle.
+
+**Signature and identity.** Store the body **without** a sign-off.
+- `send_outreach.mjs` appends the applicant's own **Email Signature** from User Test. Eassa, Lazim and Munaza each have their own name, phone, email, LinkedIn and resume link.
+- It fills `{{RESUME_LINK}}`, `{{LINKEDIN_URL}}` and `{{APPLICANT_NAME}}` from the same applicant record.
+- It blocks the send if the body contains another applicant's name, LinkedIn or resume link, or says "resume attached". The Gmail tool sends no attachment, so use the link instead.
+- Never type a resume link, LinkedIn URL or phone number into the body by hand.
+- If the applicant has no Resume URL or Mobile Number in User Test, tell the user before sending.
+
+Write the subject and body to Prospects. Do not send. Sending goes through the `relevance-tools` skill (dry run, then `--confirm` after the user says go).
 
 ## Finish
 Report for each job: the prospects (name, title, Role Type, Priority), email status (verified / suggested / pending), mobile status for Primary, which research is missing and why (404 URL, no posts, credits), and what the user must do before sending (raise the Clay MCP limit, add resume URLs, fix LinkedIn URLs).

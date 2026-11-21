@@ -16,11 +16,17 @@
  *   node relevance/send_outreach.mjs --user eassahashimev@gmail.com --to jane@acme.com \
  *     --subject "..." --body-file body.txt --linkedin https://www.linkedin.com/in/jane/ --confirm
  *
+ * With --record the email is BLOCKED unless all 6 inputs exist (Prospect Summary, Post Summary,
+ * Company Summary, Company Post Summary, Job Description, applicant Profile Summary) and the body
+ * carries only this applicant's identity. The sign-off is replaced by the applicant's own
+ * Email Signature from User Test; {{RESUME_LINK}} / {{LINKEDIN_URL}} / {{APPLICANT_NAME}} are filled in.
+ *
  * Options: --only email|linkedin   --allow-unverified (use "Suggested Email (unverified)")
  */
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { loadContext, finaliseBody, identityProblems, airtable as at } from "./lib.mjs";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 loadEnv(path.join(here, "..", ".env"));
@@ -52,16 +58,16 @@ const only = args.only; // "email" | "linkedin" | undefined
 
 // ---- 1. Gather the outreach ------------------------------------------------
 let p; // { recordId?, name, user, to, linkedin, subject, body, log }
+let ctx = null;
 if (args.record) {
-  if (!AT) die("Set AIRTABLE_TOKEN in .env to read Prospects records.");
-  const r = await airtable(`GET`, `${PROSPECTS}/${args.record}`);
-  const f = r.fields;
-  let to = f[F.email];
-  if (!to && args["allow-unverified"]) to = f[F.suggested];
+  ctx = await loadContext(args.record);
+  const q = ctx.prospect;
+  let to = q.email;
+  if (!to && args["allow-unverified"]) to = q.suggested;
   p = {
-    recordId: r.id, name: f[F.name], user: (f[F.user] || "").trim().toLowerCase(),
-    to, linkedin: f[F.linkedin], subject: f[F.subject], body: f[F.body], log: f[F.log] || "",
-    alreadyEmailed: f[F.emailSentAt], alreadyInvited: f[F.inviteSentAt],
+    recordId: q.id, name: q.name, user: ctx.applicant.userEmail,
+    to, linkedin: q.linkedin, subject: q.subject, body: q.body, log: q.log,
+    alreadyEmailed: q.emailSentAt, alreadyInvited: q.inviteSentAt,
   };
 } else {
   p = {
@@ -74,13 +80,27 @@ if (args.record) {
 const sender = senders[p.user];
 if (!sender) die(`No sender configured for User Email ID "${p.user}". Known: ${Object.keys(senders).join(", ")}`);
 
+// Email gate: all 6 inputs analysed, and the body carries THIS applicant's signature/resume/LinkedIn only.
+const blockers = [];
+let finalBody = p.body;
+if (only !== "linkedin" && p.body) {
+  if (ctx) {
+    if (ctx.missing.length) blockers.push(`missing required inputs: ${ctx.missing.join(", ")}`);
+    finalBody = finaliseBody(p.body, ctx.applicant);
+    blockers.push(...identityProblems(finalBody, ctx.applicant, senders));
+  } else {
+    console.warn("! --user mode: 6-input and signature checks need --record; body is sent as given.");
+  }
+}
+
 // ---- 2. Plan ---------------------------------------------------------------
 const plan = [];
 if (only !== "linkedin") {
   if (!p.to) console.warn(`! Skipping email: no verified Prospect Email${args.record ? " (use --allow-unverified to use the suggested one)" : ""}.`);
   else if (!p.subject || !p.body) console.warn("! Skipping email: subject or body is empty.");
   else if (p.alreadyEmailed && !args.force) console.warn(`! Skipping email: already sent ${p.alreadyEmailed} (use --force to resend).`);
-  else plan.push({ kind: "email", tool: tool(sender.gmail), params: { email: p.to, subjectline: p.subject, email_body: p.body } });
+  else if (blockers.length) console.warn(`! Email BLOCKED:\n  - ${blockers.join("\n  - ")}`);
+  else plan.push({ kind: "email", tool: tool(sender.gmail), params: { email: p.to, subjectline: p.subject, email_body: finalBody } });
 }
 if (only !== "email") {
   if (!sender.linkedin_invite) console.warn("! Skipping LinkedIn: no invite tool for this user.");
@@ -119,10 +139,10 @@ for (const s of plan) {
     log += `${now} ${s.kind} FAILED via ${s.tool.title}: ${e.message.slice(0, 200)}\n`;
   }
 }
-if (p.recordId && AT) {
+if (p.recordId) {
   update[F.log] = log;
   if (update[F.emailSentAt]) update[F.status] = "Contacted";
-  try { await airtable("PATCH", `${PROSPECTS}/${p.recordId}`, { fields: update, typecast: true }); console.log("✓ Airtable updated"); }
+  try { await at("PATCH", `${PROSPECTS}/${p.recordId}`, { fields: update, typecast: true }); console.log("✓ Airtable updated"); }
   catch (e) { console.error(`! Airtable update failed: ${e.message}`); }
 }
 process.exit(failed ? 1 : 0);
@@ -145,15 +165,6 @@ async function runTool(id, params) {
   if (!res.ok || json.status === "failed" || (Array.isArray(json.errors) && json.errors.length))
     throw new Error(JSON.stringify(json.errors || json).slice(0, 500));
   return json.output ?? json;
-}
-async function airtable(method, pathPart, body) {
-  const res = await fetch(`https://api.airtable.com/v0/${BASE}/${pathPart}`, {
-    method, headers: { Authorization: `Bearer ${AT}`, "Content-Type": "application/json" },
-    body: body ? JSON.stringify(body) : undefined,
-  });
-  const json = await res.json();
-  if (!res.ok) throw new Error(JSON.stringify(json).slice(0, 300));
-  return json;
 }
 function parseArgs(a) {
   const o = {};

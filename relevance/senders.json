@@ -1,26 +1,40 @@
 {
-  "note": "Routing by the prospect User Email ID (the applicant). Tools are aliases/ids from tools.json.",
+  "note": "Routing by the prospect User Email ID (the applicant). Signature, resume and LinkedIn come from User Test (Email Signature / Resume URL / Linkedin URL). identity_markers: strings that must NOT appear in another applicant's email.",
   "senders": {
     "eassahashimev@gmail.com": {
       "name": "Eassa Hashim",
       "send_from_email": "eassahashim88@gmail.com",
       "gmail": "1a3e6536-db49-449f-9f75-517504239b3c",
       "linkedin_invite": "5f3c0f8a-9af9-4cc1-898b-7b230346962c",
-      "whatsapp": null
+      "whatsapp": null,
+      "identity_markers": [
+        "Eassa Hashim",
+        "linkedin.com/in/eassahashim",
+        "eassahashim88@gmail.com",
+        "1Cx7lD14Vrhj0yObO8cLn3T2Jp6l5LlW_zikpVUlTGVU"
+      ]
     },
     "syed.munaza@gmail.com": {
       "name": "Munaza Shah",
       "send_from_email": "syed.munaza@gmail.com (confirm in Relevance)",
       "gmail": "8f08cea6-4eb3-4586-acd5-e57d0db5554e",
       "linkedin_invite": "d1137b03-d66f-4404-b008-560c34108a81",
-      "whatsapp": "23a01c2b-21fa-4396-bf13-93ee49f6ede3"
+      "whatsapp": "23a01c2b-21fa-4396-bf13-93ee49f6ede3",
+      "identity_markers": [
+        "Munaza Shah",
+        "linkedin.com/in/munaza-shah-949b1a163"
+      ]
     },
     "lazimabedali@gmail.com": {
       "name": "Lazim Abed Ali",
       "send_from_email": "lazimabedali@gmail.com (confirm in Relevance)",
       "gmail": "08d256cb-2b21-469c-9daf-09f9e0cf3873",
       "linkedin_invite": "6a7c9f6c-e321-4449-915e-a5eca4363f24",
-      "whatsapp": "7325f61f-66bf-4bc3-a7ec-f4b8d9e118de"
+      "whatsapp": "7325f61f-66bf-4bc3-a7ec-f4b8d9e118de",
+      "identity_markers": [
+        "Lazim Abed Ali",
+        "linkedin.com/in/lazimabedali"
+      ]
     }
   }
 }

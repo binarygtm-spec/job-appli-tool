@@ -19,6 +19,13 @@ Each send goes out from the **applicant's own** connected account. The applicant
 
 Never send from another applicant's tool. If a User Email ID isn't in `senders.json`, stop and ask.
 
+**Signature, resume and LinkedIn also follow the User Email ID.** They come from that applicant's User Test row: `Email Signature` (formula), `Resume URL` and `Linkedin URL`. The send script handles them:
+- It replaces any sign-off in the body with that signature.
+- It fills `{{RESUME_LINK}}`, `{{LINKEDIN_URL}}` and `{{APPLICANT_NAME}}`.
+- It blocks the email if the body contains another applicant's name, LinkedIn or resume link (`identity_markers` in `senders.json`).
+
+**Email gate.** With `--record`, the email is blocked unless all 6 inputs exist: Prospect Summary, Prospect Post Summary, Company Summary, Company Post Summary, Job Description and the applicant's Profile Summary. To see exactly what the email must be built from, run `node relevance/email_context.mjs --record <recId>`.
+
 ## Tool inputs
 
 | Kind | Tools | Params |

@@ -44,7 +44,7 @@ Each send goes out from the applicant's own connected tool, chosen by the prospe
 node relevance/send_outreach.mjs --record <prospect recId>             # dry run: shows To/Subject/Body/invite
 node relevance/send_outreach.mjs --record <prospect recId> --confirm   # sends email + LinkedIn invite
 ```
-After a send it writes `Email Sent At`, `LinkedIn Invite Sent At` and `Outreach Log` back to Airtable.
+Before composing, `node relevance/email_context.mjs --record <recId>` checks for and prints the 6 required inputs. The send script refuses to email if any are missing, and adds the applicant's own signature, resume and LinkedIn link (template: `templates/application_email.md`). After a send it writes `Email Sent At`, `LinkedIn Invite Sent At` and `Outreach Log` back to Airtable.
 
 ## Requirements
 - Node 18+ (scraper), Google Chrome
