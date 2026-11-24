@@ -58,7 +58,7 @@ setkey() { # setkey NAME "prompt"
   local cur; cur=$(grep -E "^$1=" .env | sed -E 's/^[^=]+="?([^"]*)"?$/\1/')
   if [ -z "$cur" ] || [[ "$cur" == *"<"* ]] || [[ "$cur" == *"xxx"* ]]; then
     read -r -s -p "  $2: " val; echo
-    [ -n "$val" ] && { grep -v -E "^$1=" .env > .env.tmp; echo "$1=\"$val\"" >> .env.tmp; mv .env.tmp .env; }
+    if [ -n "$val" ]; then grep -v -E "^$1=" .env > .env.tmp || true; echo "$1=\"$val\"" >> .env.tmp; mv .env.tmp .env; else echo "  (skipped)"; fi
   else ok "$1 already set"; fi
 }
 setkey AIRTABLE_TOKEN "Airtable personal access token (pat…)"
