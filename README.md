@@ -46,6 +46,12 @@ node relevance/send_outreach.mjs --record <prospect recId> --confirm   # sends e
 ```
 Before composing, `node relevance/email_context.mjs --record <recId>` checks for and prints the 6 required inputs. The send script refuses to email if any are missing, and adds the applicant's own signature, resume and LinkedIn link (template: `templates/application_email.md`). After a send it writes `Email Sent At`, `LinkedIn Invite Sent At` and `Outreach Log` back to Airtable.
 
+## Set up a new Mac
+```bash
+curl -fsSL https://raw.githubusercontent.com/binarygtm-spec/job-appli-tool/add-relevance-tools-skill/setup-mac.sh -o setup-mac.sh && bash setup-mac.sh
+```
+Installs Homebrew, Node, Git, GitHub CLI and Chrome; clones this repo to `~/job-appli-tool`; installs the scraper; asks for the Airtable and Relevance tokens (saved to `.env`, mode 600); adds the Relevance tools to the Claude desktop app. Safe to re-run.
+
 ## Requirements
 - Node 18+ (scraper), Google Chrome
 - Airtable PAT, Clay (watch the separate **MCP credit limit**), Relevance AI
