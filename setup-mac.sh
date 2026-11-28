@@ -69,6 +69,12 @@ ok ".env ready (only you can read it)"
 say "7/7 Claude desktop app: Relevance tools (MCP)"
 CFG="$HOME/Library/Application Support/Claude/claude_desktop_config.json"
 TOKEN=$(grep -E '^RELEVANCE_AUTH_TOKEN=' .env | sed -E 's/^[^=]+="?([^"]*)"?$/\1/')
+# Relevance often shows only the "sk-…" part: prefix the project ID so the token is project_id:api_key
+case "$TOKEN" in sk-*)
+  TOKEN="87c83726-444b-5ecb-bb93-f48503484fa5:$TOKEN"
+  grep -v -E '^RELEVANCE_AUTH_TOKEN=' .env > .env.new; echo "RELEVANCE_AUTH_TOKEN=\"$TOKEN\"" >> .env.new; cat .env.new > .env; : > .env.new
+  ok "added the Relevance project ID in front of the key";;
+esac
 if [ -n "$TOKEN" ] && [[ "$TOKEN" != *"<"* ]]; then
   mkdir -p "$(dirname "$CFG")"
   CFG="$CFG" TOKEN="$TOKEN" node -e '
